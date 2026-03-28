@@ -6,7 +6,7 @@ function convertToBool(text, fault = 'true') {
 }
 module.exports = {
 SESSION_ID: process.env.SESSION_ID || "",
-ALIVE_IMG: process.env.ALIVE_IMG || "https://raw.githubusercontent.com/dewmiamaya/Titan79/refs/heads/main/images/20260323_102432.jpg",
+ALIVE_IMG: process.env.ALIVE_IMG || "https://raw.githubusercontent.com/dewmiamaya/Titan79/refs/heads/main/images/20260328_175039.jpg",
 ALIVE_MSG: process.env.ALIVE_MSG || `🇬🇧 *Welcome to MALSHAN-MD Ai and multimedia services.* (To view commands, send .MENU📄 )
 
 🇰🇷 *MALSHAN-MD AI 및 멀티미디어 서비스에 오신 것을 환영합니다.*  (명령어를 보려면 .MENU를 보내세요📄 )
