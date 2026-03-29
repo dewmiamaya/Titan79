@@ -16,6 +16,7 @@ ALIVE_MSG: process.env.ALIVE_MSG || `🇬🇧 *Welcome to MALSHAN-MD Ai and mult
 > ⚡ Powered by SLPR MALSHAN 📡
 > 🚀 Fast • Smart • Reliable 🛡️`,
 BOT_OWNER: '94765900102',  // Replace with the owner's phone number
+AUTO_STATUS_SEEN: 'ture',
 
 
 
