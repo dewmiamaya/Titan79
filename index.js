@@ -270,7 +270,6 @@ if (mek.key?.remoteJid === 'status@broadcast') {
       }
     }
   });
-}
 
 
   conn.ev.on('messages.update', async (updates) => {
@@ -286,6 +285,7 @@ if (mek.key?.remoteJid === 'status@broadcast') {
       }
     }
   });
+}
 
 
 
