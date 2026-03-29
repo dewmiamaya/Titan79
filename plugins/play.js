@@ -1,23 +1,44 @@
 const { cmd } = require("../command");
 const fetch = require("node-fetch");
 
-// 🔍 YouTube search
+// 🔍 Multi search system
 async function ytSearch(query) {
-  const r = await fetch(`https://api.dylux.xyz/search/ytsearch?q=${encodeURIComponent(query)}`);
-  const d = await r.json();
-  if (!d.status || !d.result.length) throw "No results";
-
-  return d.result[0]; // first result
-}
-
-// 🎵 MP3 downloader (fallback system)
-async function getMp3(url) {
   const apis = [
     async () => {
-      const r = await fetch(`https://api.dylux.xyz/download/ytmp3?url=${url}`);
+      const r = await fetch(`https://api.zenzxz.my.id/api/search/youtube?q=${encodeURIComponent(query)}`);
       const d = await r.json();
-      if (d.status && d.result?.download) return d.result.download;
+      if (d.status && d.result?.length) {
+        return {
+          title: d.result[0].title,
+          url: d.result[0].url
+        };
+      }
     },
+    async () => {
+      const r = await fetch(`https://vihangayt.me/api/ytsearch?q=${encodeURIComponent(query)}`);
+      const d = await r.json();
+      if (d.status && d.result?.data?.length) {
+        return {
+          title: d.result.data[0].title,
+          url: d.result.data[0].url
+        };
+      }
+    }
+  ];
+
+  for (let api of apis) {
+    try {
+      const res = await api();
+      if (res) return res;
+    } catch {}
+  }
+
+  throw "Search API failed";
+}
+
+// 🎵 MP3 downloader (same fallback)
+async function getMp3(url) {
+  const apis = [
     async () => {
       const r = await fetch(`https://api.zenzxz.my.id/api/downloader/ytmp3?url=${url}`);
       const d = await r.json();
@@ -37,7 +58,7 @@ async function getMp3(url) {
     } catch {}
   }
 
-  throw "All APIs failed";
+  throw "Download API failed";
 }
 
 // 🎧 command
@@ -51,12 +72,10 @@ cmd({
   if (!msg) return m.reply("❗ Song name එක දාන්න");
 
   try {
-    // 🔍 search
     const vid = await ytSearch(msg);
 
     await m.reply(`🔎 Found: ${vid.title}`);
 
-    // 🎵 download
     const link = await getMp3(vid.url);
 
     await conn.sendMessage(m.chat, {
@@ -66,6 +85,6 @@ cmd({
 
   } catch (e) {
     console.log(e);
-    m.reply("❌ Search/Download failed");
+    m.reply("❌ APIs down 😢 Try later");
   }
 });
