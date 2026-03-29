@@ -22,9 +22,23 @@ cmd(
     }
   ) => {
     try {
-      if (!q) return reply("*🖼️ Please enter a keyword to search HD wallpapers!*");
+      if (!q) return reply(`╭━━━〔 🌐 MALSHAN-MD WALLPAPER SERVICE 〕━━━╮
 
-      reply("*🔍 Searching for HD wallpapers... Please wait a moment.*");
+🇬🇧  Welcome to MALSHAN-MD wallpaper service
+🇰🇷  MALSHAN-MD 배경화면 서비스에 오신 것을 환영합니다.
+
+────────────────────────────
+
+🇬🇧  How to use this command correctly ➡️ (.wall The name of the wallpaper you want)
+🇰🇷  이 명령어를 올바르게 사용하는 방법 ➡️ (.wall 원하시는 배경화면의 이름)
+
+────────────────────────────
+
+MALSHAN-MD AI 및 멀티미디어 서비스를 이용해 주셔서 감사합니다. 좋은 하루 되세요💕...
+
+╰━━━━━━━━━━━━━━━━━━━━━━━━━━━━╯`,);
+
+      reply("*🔍 MALSHAN-MD Searching for HD wallpapers... Please wait a moment.*");
 
       const res = await axios.get(`https://wallhaven.cc/api/v1/search?q=${encodeURIComponent(q)}&sorting=random&resolutions=1920x1080,2560x1440,3840x2160`);
       const wallpapers = res.data.data;
@@ -35,7 +49,7 @@ cmd(
 
       const selected = wallpapers.slice(0, 5); // get top 5
 
-      const header = `WALLPAPER DOWNLOADER`;
+      const header = `MALSHAN-MD WALLPAPER DOWNLOADER`;
 
       await conn.sendMessage(
         from,
